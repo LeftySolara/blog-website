@@ -2,6 +2,10 @@
   "name": "blog",
   "version": "0.1.0",
   "private": true,
+  "author": "Julianne Adams <julianne@julianneadams.dev>",
+  "license": "MIT",
+  "homepage": "https://blog.julianneadams.dev",
+  "repository": "https://github.com/LeftySolara/blog-website",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
