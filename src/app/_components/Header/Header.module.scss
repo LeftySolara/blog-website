@@ -1,0 +1,35 @@
+@use "../../_styles/_theme" as theme;
+
+#main-header {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  gap: 32px;
+  color: map-get(theme.$colors, "surface0");
+}
+
+#main-header h1 {
+  font-family: theme.$heading-font-stack;
+  font-weight: theme.$font-weight-regular;
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+#header-nav-list {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.header-nav-link {
+  color: map-get(theme.$colors, "surface0");
+  font-family: theme.$body-font-stack;
+  font-size: 16px;
+  text-decoration-color: map-get(theme.$colors, "sapphire");
+}

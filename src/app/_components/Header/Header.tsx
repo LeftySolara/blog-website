@@ -1,3 +1,5 @@
+import styles from "./Header.module.scss";
+
 /**
  * Link to be displayed in the Header component.
  *
@@ -30,16 +32,18 @@ const headerLinks: Array<HeaderLink> = [
 ];
 
 export const Header = () => (
-  <header>
+  <header id={styles["main-header"]}>
     <h1>The Other Side of the IDE</h1>
-    <div>
-      <ul>
+    <nav>
+      <ul id={styles["header-nav-list"]}>
         {headerLinks.map((link) => (
           <li key={link.label}>
-            <a href={link.href}>{link.label}</a>
+            <a className={styles["header-nav-link"]} href={link.href}>
+              {link.label}
+            </a>
           </li>
         ))}
       </ul>
-    </div>
+    </nav>
   </header>
 );
