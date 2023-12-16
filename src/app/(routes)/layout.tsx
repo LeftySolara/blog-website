@@ -7,7 +7,7 @@ import { Footer } from "@/app/_components/Footer/Footer";
  */
 const BlogLayout = ({ children }: { children: React.ReactNode }) => (
   <>
-    <Header links={[]} />
+    <Header />
     <main>{children}</main>
     <Footer />
   </>
