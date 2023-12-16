@@ -1,9 +1,9 @@
 import styles from "./page.module.scss";
 
 const Home = () => (
-  <main>
+  <header>
     <h1 className={styles.headingExample}>Hello World!</h1>
-  </main>
+  </header>
 );
 
 export default Home;
