@@ -38,7 +38,7 @@ const socialMediaButtonPropsArray: SocialMediaButtonPropsArray = [
  */
 export const Footer = () => (
   <footer>
-    <p>© Julianne Adams 2023</p>
+    <p>© Julianne Adams {new Date().getFullYear()}</p>
     <div>
       {socialMediaButtonPropsArray.map((propsObject) => (
         <SocialMediaButton
