@@ -23,5 +23,12 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "typedocOptions": {
+    "excludeNotDocumented": true,
+    "exclude": "**/**.test.tsx",
+    "entryPointStrategy": "expand",
+    "entryPoints": "./src/app",
+    "out": "docs"
+  }
 }
