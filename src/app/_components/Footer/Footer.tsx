@@ -2,6 +2,7 @@ import {
   SocialMediaButton,
   SocialMediaButtonProps,
 } from "@/app/_components/SocialMediaButton/SocialMediaButton";
+import styles from "./Footer.module.scss";
 
 /**
  * An array of {@link SocialMediaButtonProps} objects.
@@ -37,9 +38,11 @@ const socialMediaButtonPropsArray: SocialMediaButtonPropsArray = [
  * @category Component
  */
 export const Footer = () => (
-  <footer>
-    <p>© Julianne Adams {new Date().getFullYear()}</p>
-    <div>
+  <footer id={styles["main-footer"]}>
+    <p id={styles["copyright-line"]}>
+      © Julianne Adams {new Date().getFullYear()}
+    </p>
+    <div className={styles["social-buttons-container"]}>
       {socialMediaButtonPropsArray.map((propsObject) => (
         <SocialMediaButton
           buttonProps={propsObject}

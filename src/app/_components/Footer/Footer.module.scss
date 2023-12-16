@@ -1,0 +1,19 @@
+@use "../../_styles/theme" as theme;
+
+#main-footer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+#copyright-line {
+  font-family: theme.$body-font-stack;
+  font-size: 18px;
+  color: map-get(theme.$colors, "surface0");
+}
+
+.social-buttons-container {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 24px;
+}
