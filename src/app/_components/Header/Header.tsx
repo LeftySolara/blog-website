@@ -45,5 +45,6 @@ export const Header = () => (
         ))}
       </ul>
     </nav>
+    <hr className={styles.divider} />
   </header>
 );
