@@ -10,12 +10,31 @@ export interface HeaderLink {
   label: string;
 }
 
-export const Header = ({ links }: { links: Array<HeaderLink> }) => (
+const headerLinks: Array<HeaderLink> = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "Posts",
+    href: "/posts",
+  },
+  {
+    label: "Categories",
+    href: "/categories",
+  },
+  {
+    label: "Series",
+    href: "/series",
+  },
+];
+
+export const Header = () => (
   <header>
     <h1>The Other Side of the IDE</h1>
     <div>
       <ul>
-        {links.map((link) => (
+        {headerLinks.map((link) => (
           <li key={link.label}>
             <a href={link.href}>{link.label}</a>
           </li>
