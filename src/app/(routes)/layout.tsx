@@ -9,7 +9,7 @@ import styles from "./layout.module.scss";
 const BlogLayout = ({ children }: { children: React.ReactNode }) => (
   <div id={styles["blog-layout"]}>
     <Header />
-    <main>{children}</main>
+    <main className={styles["main-content"]}>{children}</main>
     <Footer />
   </div>
 );

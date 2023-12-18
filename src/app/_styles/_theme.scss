@@ -28,7 +28,7 @@ $colors: (
   "crust": #232634,
 );
 
-$heading-font-stack: "Gilda Display", serif;
+$heading-font-stack: var(--font-gilda-display), serif;
 $body-font-stack: var(--font-inconsolata), "Open Sans", "Helvetica Neue Light",
   "Helvetica Neue", "Helvetica", "Arial", sans-serif !default;
 

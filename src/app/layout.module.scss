@@ -1,9 +1,12 @@
+@use "./_styles/theme" as theme;
+
 .main-html {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   padding: 80px 0px 80px 0px;
+  color: map-get(theme.$colors, "surface0");
 }
 
 .page-body {

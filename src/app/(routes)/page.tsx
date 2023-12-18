@@ -27,9 +27,9 @@ const Home = () => {
 
   return (
     <>
-      <section>
+      <section className={styles["content-section"]}>
         <header>
-          <h2>Hi, I&apos;m Jules.</h2>
+          <h2 className={styles.heading}>Hi, I&apos;m Jules.</h2>
         </header>
         <p>
           I&apos;m a highly-motivated IT professional with an interest in
@@ -44,11 +44,11 @@ const Home = () => {
           <a href="https://julianneadams.dev">main website</a>.
         </p>
       </section>
-      <section>
+      <section className={styles["recent-posts-section"]}>
         <header>
           <h2 className={styles.heading}>Recent Posts</h2>
-          <PostList posts={posts} />
         </header>
+        <PostList posts={posts} />
       </section>
     </>
   );
