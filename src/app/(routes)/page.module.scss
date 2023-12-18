@@ -1,0 +1,7 @@
+@use "../_styles/theme" as theme;
+
+.heading {
+  font-family: theme.$heading-font-stack;
+  font-weight: theme.$font-weight-regular;
+  font-size: 32px;
+}
