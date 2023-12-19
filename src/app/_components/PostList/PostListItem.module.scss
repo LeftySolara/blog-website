@@ -1,0 +1,30 @@
+@use "../../_styles/theme" as theme;
+@import "../../_styles/include-media";
+
+.post-list-item {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 48px;
+  margin: 0;
+  padding: 0;
+  font-family: theme.$body-font-stack;
+  font-size: 18px;
+
+  @include media(">phone", "<=desktop") {
+    flex-flow: column nowrap;
+    gap: 8px;
+    align-items: flex-start;
+  }
+}
+
+.post-link {
+  color: map-get(theme.$colors, "sapphire");
+  text-decoration: none;
+}
+
+.post-list-item p {
+  margin: 0;
+  padding: 0;
+}

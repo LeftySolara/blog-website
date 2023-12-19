@@ -1,0 +1,34 @@
+@use "../_styles/theme" as theme;
+
+.heading {
+  margin: 0;
+  padding: 0;
+  font-family: theme.$heading-font-stack;
+  font-weight: theme.$font-weight-regular;
+  font-size: 32px;
+}
+
+.recent-posts-section {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 18px;
+}
+
+.content-section {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 24px;
+  font-family: theme.$body-font-stack;
+  font-size: 18px;
+}
+
+.content-section p {
+  margin: 0;
+  padding: 0;
+}
+
+.content-section p a {
+  color: map-get(theme.$colors, "sapphire");
+  font-weight: theme.$font-weight-semibold;
+  text-decoration: none;
+}

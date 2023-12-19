@@ -1,0 +1,64 @@
+@use "../../_styles/_theme" as theme;
+@import "../../_styles/include-media";
+
+#main-header {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  gap: 32px;
+  color: map-get(theme.$colors, "surface0");
+
+  @include media(">phone", "<=desktop") {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+#main-header h1 {
+  font-family: theme.$heading-font-stack;
+  font-weight: theme.$font-weight-regular;
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+
+  @include media(">phone", "<=desktop") {
+    font-size: 32px;
+    text-align: center;
+  }
+}
+
+#header-nav-list {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include media(">phone", "<=desktop") {
+    width: 100%;
+  }
+}
+
+.header-nav-link {
+  color: map-get(theme.$colors, "surface0");
+  font-family: theme.$body-font-stack;
+  font-size: 16px;
+  text-decoration-color: map-get(theme.$colors, "sapphire");
+
+  @include media(">phone", "<=desktop") {
+    font-size: 18px;
+  }
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-color: map-get(theme.$colors, "text");
+  background-color: map-get(theme.$colors, "text");
+  border-width: 0px;
+}
