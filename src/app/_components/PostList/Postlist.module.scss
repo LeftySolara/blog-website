@@ -1,7 +1,13 @@
+@import "../../_styles/_include-media.scss";
+
 .post-list {
   display: flex;
   flex-flow: column nowrap;
   gap: 16px;
   margin: 0;
   padding: 0;
+
+  @include media(">phone", "<=desktop") {
+    gap: 32px;
+  }
 }

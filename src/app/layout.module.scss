@@ -1,16 +1,25 @@
 @use "./_styles/theme" as theme;
+@import "./_styles/include-media";
 
 .main-html {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  padding: 80px 0px 00px 0px;
+  padding: 80px 0px 0px 0px;
   color: map-get(theme.$colors, "surface0");
+
+  @include media(">phone", "<=desktop") {
+    width: 100vw;
+  }
 }
 
 .page-body {
   width: 640px;
   margin: 0;
   padding: 0px;
+
+  @include media(">phone", "<=desktop") {
+    width: 80%;
+  }
 }

@@ -1,10 +1,15 @@
 @use "../../_styles/theme" as theme;
+@import "../../_styles/include-media";
 
 #main-footer {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+
+  @include media(">phone", "<=desktop") {
+    flex-flow: column-reverse nowrap;
+  }
 }
 
 #copyright-line {
