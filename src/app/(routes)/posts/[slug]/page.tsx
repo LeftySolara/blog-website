@@ -3,6 +3,7 @@ import fs from "fs";
 import { remark } from "remark";
 import html from "remark-html";
 import matter from "gray-matter";
+import styles from "./page.module.scss";
 
 interface BlogPostData {
   slug: string;
@@ -41,7 +42,10 @@ const BlogPostPage = async () => {
   return (
     <div>
       <h1>{postData.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+      <div
+        className={styles["markdown-content"]}
+        dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
+      />
     </div>
   );
 };
