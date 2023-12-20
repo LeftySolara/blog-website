@@ -1,0 +1,13 @@
+@use "../../_styles/theme" as theme;
+
+.posts-page {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 16px;
+}
+
+.posts-page h2 {
+  font-family: theme.$heading-font-stack;
+  margin: 0;
+  padding: 0;
+}
