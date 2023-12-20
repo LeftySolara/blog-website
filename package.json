@@ -16,10 +16,13 @@
   },
   "dependencies": {
     "@iconify/react": "^4.1.1",
+    "gray-matter": "^4.0.3",
     "moment": "^2.29.4",
     "next": "14.0.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1"
   },
   "devDependencies": {
     "@testing-library/react": "^14.1.2",
