@@ -1,51 +1,31 @@
-import path from "path";
-import fs from "fs";
 import { remark } from "remark";
 import html from "remark-html";
-import matter from "gray-matter";
+import { fetchPost } from "@/app/_utils/fetchPost";
 import styles from "./page.module.scss";
 
-interface BlogPostData {
-  slug: string;
-  content: string;
-  contentHtml: string;
-  title: string;
-}
+const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
+  let htmlContent: string | TrustedHTML = "";
 
-// Temporarily using markdown files to test post rendering.
-// Eventually we will pull content from a Strapi server.
-const postsDirectory = `${process.cwd()}/src/app/_posts`;
+  const postData = await fetchPost(params.slug);
 
-const getPostData = async (slug: string): Promise<BlogPostData> => {
-  const fullPath = path.join(postsDirectory, `${slug}.md`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-
-  const matterResult = matter(fileContents);
-
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content);
-
-  const contentHtml = processedContent.toString();
-
-  return {
-    slug,
-    contentHtml,
-    content: matterResult.content,
-    title: matterResult.data.title,
-  };
-};
-
-const BlogPostPage = async () => {
-  const postData = await getPostData("exampleBlogPost");
+  if (postData) {
+    const processedContent = await remark().use(html).process(postData.content);
+    htmlContent = processedContent.toString();
+  }
 
   return (
     <div>
-      <h1>{postData.title}</h1>
-      <div
-        className={styles["markdown-content"]}
-        dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
-      />
+      {postData ? (
+        <>
+          <h1>{postData.title}</h1>
+          <div
+            className={styles["markdown-content"]}
+            dangerouslySetInnerHTML={{ __html: htmlContent }}
+          />
+        </>
+      ) : (
+        <h1>Post not found.</h1>
+      )}
     </div>
   );
 };
