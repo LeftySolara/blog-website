@@ -1,0 +1,18 @@
+@use "./_styles/theme" as theme;
+
+.heading {
+  font-family: theme.$heading-font-stack;
+  font-size: 48px;
+}
+
+.not-found-message {
+  font-family: theme.$body-font-stack;
+  font-size: 24px;
+}
+
+.home-link {
+  font-family: theme.$body-font-stack;
+  font-size: 20px;
+  text-decoration: none;
+  color: map-get(theme.$colors, "sapphire");
+}
