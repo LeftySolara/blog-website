@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@iconify/react": "^4.1.1",
+    "@types/qs": "^6.9.11",
     "moment": "^2.29.4",
     "next": "14.0.4",
     "qs": "^6.11.2",
