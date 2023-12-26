@@ -17,7 +17,7 @@ export const fetchResource = async (
     const mergedOptions = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
       },
       ...options,
     };
@@ -26,7 +26,7 @@ export const fetchResource = async (
     const queryString = qs.stringify(urlParamsObject, {
       encodeValuesOnly: true,
     });
-    const requestUrl = `${process.env.STRAPI_API_URL}/${path}${
+    const requestUrl = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/${path}${
       queryString ? `?${queryString}` : ""
     }`;
 
@@ -36,6 +36,7 @@ export const fetchResource = async (
 
     return data;
   } catch (err: unknown) {
+    console.log(err);
     throw new Error(
       "Error fetching resource from server. Is the server running?",
     );

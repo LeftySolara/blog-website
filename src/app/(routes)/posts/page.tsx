@@ -1,20 +1,38 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { PostInfo } from "@/app/_components/PostList/PostListItem";
 import { PostInfoArray, PostList } from "@/app/_components/PostList/PostList";
 import { fetchPostsPaginated } from "@/app/_utils/fetchPostsPaginated";
 import { Post } from "@/app/_types/post";
 import styles from "./page.module.scss";
 
-const PostsPage = async () => {
-  const data: Array<Post> = await fetchPostsPaginated(1, 10);
-  const posts: PostInfoArray = data.map((post: Post): PostInfo => {
-    const { title, datePublished, slug } = post;
+const PostsPage = () => {
+  const initialPosts: PostInfoArray = [];
 
-    return {
-      title,
-      dateString: datePublished.toString(),
-      href: `/posts/${slug}`,
+  const [page, setPage] = useState(1);
+  const [posts, setPosts] = useState(initialPosts);
+  const pageSize = 10;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data: Array<Post> = await fetchPostsPaginated(page, pageSize);
+
+      const postList: PostInfoArray = data.map((post: Post): PostInfo => {
+        const { title, datePublished, slug } = post;
+
+        return {
+          title,
+          dateString: datePublished.toString(),
+          href: `/posts/${slug}`,
+        };
+      });
+
+      setPosts([...postList]);
     };
-  });
+
+    fetchData();
+  }, [page]);
 
   return (
     <div className={styles["posts-page"]}>
