@@ -13,11 +13,11 @@
  */
 export interface Post {
   title: string;
-  content: string;
-  summary: string;
+  content?: string;
+  summary?: string;
   datePublished: Date;
   slug: string;
   uid: string;
-  categories: Array<string>;
-  series: string | null;
+  categories?: Array<string>;
+  series?: string;
 }

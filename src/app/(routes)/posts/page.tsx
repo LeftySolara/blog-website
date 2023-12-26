@@ -1,29 +1,20 @@
+import { PostInfo } from "@/app/_components/PostList/PostListItem";
 import { PostInfoArray, PostList } from "@/app/_components/PostList/PostList";
+import { fetchPostsPaginated } from "@/app/_utils/fetchPostsPaginated";
+import { Post } from "@/app/_types/post";
 import styles from "./page.module.scss";
 
 const PostsPage = async () => {
-  const posts: PostInfoArray = [
-    {
-      dateString: "2021-09-01T15:21:39.862Z",
-      title: "An Example Post",
-      href: "#",
-    },
-    {
-      dateString: "2021-09-01T15:21:39.862Z",
-      title: "An Example Post",
-      href: "#",
-    },
-    {
-      dateString: "2021-09-01T15:21:39.862Z",
-      title: "An Example Post",
-      href: "#",
-    },
-    {
-      dateString: "2021-09-01T15:21:39.862Z",
-      title: "An Example Post",
-      href: "#",
-    },
-  ];
+  const data: Array<Post> = await fetchPostsPaginated(1, 10);
+  const posts: PostInfoArray = data.map((post: Post): PostInfo => {
+    const { title, datePublished, slug } = post;
+
+    return {
+      title,
+      dateString: datePublished.toString(),
+      href: `/posts/${slug}`,
+    };
+  });
 
   return (
     <div className={styles["posts-page"]}>
