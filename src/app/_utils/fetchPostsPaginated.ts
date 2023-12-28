@@ -23,10 +23,15 @@ interface FetchPostsResponse {
   };
 }
 
+export interface FetchPostsPaginatedResponse {
+  posts: Array<Post>;
+  pageCount: number;
+}
+
 export const fetchPostsPaginated = async (
   page: number,
   pageSize: number,
-): Promise<Array<Post>> => {
+): Promise<FetchPostsPaginatedResponse> => {
   try {
     const requestParams = {
       pagination: {
@@ -42,6 +47,8 @@ export const fetchPostsPaginated = async (
       {},
     );
 
+    const { pageCount } = response.meta.pagination;
+
     const posts = response.data.map((post: FetchedPost): Post => {
       const { title, date, slug, uid } = post.attributes;
 
@@ -53,7 +60,7 @@ export const fetchPostsPaginated = async (
       };
     });
 
-    return posts;
+    return { posts, pageCount };
   } catch (err: unknown) {
     throw new Error("Error fetching posts.");
   }

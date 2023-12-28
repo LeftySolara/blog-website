@@ -1,43 +1,42 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { PostInfo } from "@/app/_components/PostList/PostListItem";
-import { PostInfoArray, PostList } from "@/app/_components/PostList/PostList";
-import { fetchPostsPaginated } from "@/app/_utils/fetchPostsPaginated";
-import { Post } from "@/app/_types/post";
+import { PostList } from "@/app/_components/PostList/PostList";
+import {
+  fetchPostsPaginated,
+  FetchPostsPaginatedResponse,
+} from "@/app/_utils/fetchPostsPaginated";
+import { Pagination } from "@/app/_components/Pagination/Pagination";
 import styles from "./page.module.scss";
 
-const PostsPage = () => {
-  const initialPosts: PostInfoArray = [];
+const PostsPage = async ({
+  searchParams,
+}: {
+  searchParams?: {
+    query?: string;
+    page?: string;
+  };
+}) => {
+  const currentPage = Number(searchParams?.page) || 1;
+  const postsPerPage = 2;
 
-  const [page, setPage] = useState(1);
-  const [posts, setPosts] = useState(initialPosts);
-  const pageSize = 10;
+  const data: FetchPostsPaginatedResponse = await fetchPostsPaginated(
+    currentPage,
+    postsPerPage,
+  );
+  const { posts: rawPosts, pageCount: totalPages } = data;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data: Array<Post> = await fetchPostsPaginated(page, pageSize);
-
-      const postList: PostInfoArray = data.map((post: Post): PostInfo => {
-        const { title, datePublished, slug } = post;
-
-        return {
-          title,
-          dateString: datePublished.toString(),
-          href: `/posts/${slug}`,
-        };
-      });
-
-      setPosts([...postList]);
-    };
-
-    fetchData();
-  }, [page]);
+  const posts = rawPosts.map(
+    (post): PostInfo => ({
+      title: post.title,
+      dateString: post.datePublished.toString(),
+      href: `/posts/${post.slug}`,
+    }),
+  );
 
   return (
     <div className={styles["posts-page"]}>
       <h2>All Posts</h2>
       <PostList posts={posts} />
+      <Pagination totalPages={Number(totalPages)} />
     </div>
   );
 };
