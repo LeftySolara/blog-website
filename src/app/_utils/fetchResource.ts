@@ -23,9 +23,7 @@ export const fetchResource = async (
     };
 
     // Build request URL.
-    const queryString = qs.stringify(urlParamsObject, {
-      encodeValuesOnly: true,
-    });
+    const queryString = qs.stringify(urlParamsObject, {});
     const requestUrl = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/${path}${
       queryString ? `?${queryString}` : ""
     }`;
