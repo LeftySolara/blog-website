@@ -1,0 +1,25 @@
+@use "../../_styles/theme" as theme;
+
+.pagination-link {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+  font-family: theme.$body-font-stack;
+  font-size: 18px;
+  color: map-get(theme.$colors, "sapphire");
+  text-decoration: none;
+  text-transform: capitalize;
+
+  &.page-number {
+    &.current {
+      color: map-get(theme.$colors, "surface0");
+    }
+  }
+
+  &.invisible {
+    visibility: hidden;
+  }
+}
