@@ -1,38 +1,14 @@
 "use client";
 
-import { Icon } from "@iconify/react/dist/iconify.js";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { PaginationLink } from "@/app/_components/Pagination/PaginationLink";
 import styles from "./Pagination.module.scss";
+import linkStyles from "./PaginationLink.module.scss";
 
 interface PaginationProps {
   totalPages: number;
 }
-
-interface PageNavigationLinkProps {
-  url: string;
-  pageRelation: "prev" | "next";
-  visible: boolean;
-}
-
-const PageNavigationLink = (props: PageNavigationLinkProps) => {
-  const { url, pageRelation, visible } = props;
-
-  return (
-    <Link
-      href={url}
-      className={`${styles["page-navigation-link"]} ${
-        !visible ? styles.invisible : ""
-      }`}
-    >
-      {pageRelation === "prev" && <Icon icon="ph:arrow-left" color="#85c1dc" />}
-      &nbsp;{pageRelation.toString()} Page&nbsp;
-      {pageRelation === "next" && (
-        <Icon icon="ph:arrow-right" color="#85c1dc" />
-      )}
-    </Link>
-  );
-};
 
 export const Pagination = (props: PaginationProps) => {
   const { totalPages } = props;
@@ -59,7 +35,7 @@ export const Pagination = (props: PaginationProps) => {
 
   return (
     <div className={styles.pagination}>
-      <PageNavigationLink
+      <PaginationLink
         url={prevPageUrl}
         pageRelation="prev"
         visible={currentPage > 1}
@@ -70,7 +46,7 @@ export const Pagination = (props: PaginationProps) => {
 
           return pageNumber === currentPage ? (
             <li
-              className={`${styles["page-navigation-link"]} ${styles["page-number"]} ${styles.current}`}
+              className={`${linkStyles["pagination-link"]} ${linkStyles["page-number"]} ${linkStyles.current}`}
             >
               {pageNumber}
             </li>
@@ -78,7 +54,7 @@ export const Pagination = (props: PaginationProps) => {
             <li key={pageNumber}>
               <Link
                 href={url}
-                className={`${styles["page-navigation-link"]} ${styles["page-number"]}`}
+                className={`${linkStyles["pagination-link"]} ${linkStyles["page-number"]}`}
               >
                 {pageNumber}
               </Link>
@@ -86,7 +62,7 @@ export const Pagination = (props: PaginationProps) => {
           );
         })}
       </ul>
-      <PageNavigationLink
+      <PaginationLink
         url={nextPageUrl}
         pageRelation="next"
         visible={currentPage < totalPages}
