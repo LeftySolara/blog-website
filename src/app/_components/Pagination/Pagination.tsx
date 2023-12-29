@@ -28,7 +28,10 @@ export const Pagination = (props: PaginationProps) => {
     new Array(to - from + 1).fill("").map((v, i) => i + from);
 
   const pageNumberRange = getNumberRange(1, totalPages);
-  const pageNumbers = pageNumberRange.slice(currentPage - 5, currentPage + 5);
+  const pageNumbers = pageNumberRange.slice(
+    currentPage - pageNumberRange[currentPage - 1],
+    currentPage + 5,
+  );
 
   const nextPageUrl = createPageURL(currentPage + 1);
   const prevPageUrl = createPageURL(currentPage - 1);
@@ -47,6 +50,7 @@ export const Pagination = (props: PaginationProps) => {
           return pageNumber === currentPage ? (
             <li
               className={`${linkStyles["pagination-link"]} ${linkStyles["page-number"]} ${linkStyles.current}`}
+              key={pageNumber}
             >
               {pageNumber}
             </li>

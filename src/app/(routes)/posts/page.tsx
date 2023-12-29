@@ -16,12 +16,13 @@ const PostsPage = async ({
   };
 }) => {
   const currentPage = Number(searchParams?.page) || 1;
-  const postsPerPage = 2;
+  const postsPerPage = 5;
 
   const data: FetchPostsPaginatedResponse = await fetchPostsPaginated(
     currentPage,
     postsPerPage,
   );
+
   const { posts: rawPosts, pageCount: totalPages } = data;
 
   const posts = rawPosts.map(
