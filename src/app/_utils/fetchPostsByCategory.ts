@@ -1,23 +1,23 @@
-import { Post, FetchedPost, FetchPostsResponse } from "@/app/_types/post";
+import { FetchPostsResponse, FetchedPost, Post } from "@/app/_types/post";
 import { fetchResource } from "./fetchResource";
 
-export interface FetchPostsPaginatedResponse {
-  posts: Array<Post>;
-  pageCount: number;
-}
-
-export const fetchPostsPaginated = async (
-  page: number,
-  pageSize: number,
-): Promise<FetchPostsPaginatedResponse> => {
+export const fetchPostsByCategory = async (
+  categoryName: string,
+): Promise<Array<Post>> => {
   try {
     const requestParams = {
       pagination: {
-        page,
-        pageSize,
+        page: 1,
+        pageSize: 99,
       },
       sort: ["date:desc"],
-      fields: ["title", "date", "slug", "uid"],
+      filters: {
+        categories: {
+          name: {
+            $containsi: categoryName,
+          },
+        },
+      },
     };
 
     const response: FetchPostsResponse = await fetchResource(
@@ -25,8 +25,6 @@ export const fetchPostsPaginated = async (
       requestParams,
       {},
     );
-
-    const { pageCount } = response.meta.pagination;
 
     const posts = response.data.map((post: FetchedPost): Post => {
       const { title, date, slug, uid } = post.attributes;
@@ -39,8 +37,9 @@ export const fetchPostsPaginated = async (
       };
     });
 
-    return { posts, pageCount };
+    return posts;
   } catch (err: unknown) {
-    throw new Error("Error fetching posts.");
+    console.log(err);
+    throw new Error("Error fetching posts by category.");
   }
 };

@@ -21,3 +21,25 @@ export interface Post {
   categories?: Array<string>;
   series?: string;
 }
+
+export interface FetchedPost {
+  id: number;
+  attributes: {
+    title: string;
+    date: string;
+    slug: string;
+    uid: string;
+  };
+}
+
+export interface FetchPostsResponse {
+  data: Array<FetchedPost>;
+  meta: {
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
+}
