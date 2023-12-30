@@ -18,20 +18,29 @@ const PostsPage = async ({
   const currentPage = Number(searchParams?.page) || 1;
   const postsPerPage = 5;
 
-  const data: FetchPostsPaginatedResponse = await fetchPostsPaginated(
-    currentPage,
-    postsPerPage,
-  );
+  let posts: Array<PostInfo> = [];
+  let totalPages: number = 0;
 
-  const { posts: rawPosts, pageCount: totalPages } = data;
+  try {
+    const data: FetchPostsPaginatedResponse = await fetchPostsPaginated(
+      currentPage,
+      postsPerPage,
+    );
 
-  const posts = rawPosts.map(
-    (post): PostInfo => ({
-      title: post.title,
-      dateString: post.datePublished.toString(),
-      href: `/posts/${post.slug}`,
-    }),
-  );
+    const { posts: rawPosts, pageCount } = data;
+
+    posts = rawPosts.map(
+      (post): PostInfo => ({
+        title: post.title,
+        dateString: post.datePublished.toString(),
+        href: `/posts/${post.slug}`,
+      }),
+    );
+
+    totalPages = Number(pageCount);
+  } catch (err: unknown) {
+    console.log(err);
+  }
 
   return (
     <div className={styles["posts-page"]}>

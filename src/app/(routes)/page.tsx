@@ -7,16 +7,22 @@ import {
 import styles from "./page.module.scss";
 
 const HomePage = async () => {
-  const data: FetchPostsPaginatedResponse = await fetchPostsPaginated(1, 5);
-  const { posts: rawPosts } = data;
+  let posts: Array<PostInfo> = [];
 
-  const posts = rawPosts.map(
-    (post): PostInfo => ({
-      title: post.title,
-      dateString: post.datePublished.toString(),
-      href: `/posts/${post.slug}`,
-    }),
-  );
+  try {
+    const data = await fetchPostsPaginated(1, 5);
+    const { posts: rawPosts } = data;
+
+    posts = rawPosts.map(
+      (post): PostInfo => ({
+        title: post.title,
+        dateString: post.datePublished.toString(),
+        href: `/posts/${post.slug}`,
+      }),
+    );
+  } catch (err: unknown) {
+    console.log(err);
+  }
 
   return (
     <>

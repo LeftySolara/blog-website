@@ -14,9 +14,15 @@ export type PostInfoArray = Array<PostInfo>;
  * @category Component
  */
 export const PostList = ({ posts }: { posts: PostInfoArray }) => (
-  <ul className={styles["post-list"]}>
-    {posts.map((post) => (
-      <PostListItem postInfo={post} key={post.title} />
-    ))}
-  </ul>
+  <div>
+    {posts.length > 0 ? (
+      <ul className={styles["post-list"]}>
+        {posts.map((post) => (
+          <PostListItem postInfo={post} key={post.title} />
+        ))}
+      </ul>
+    ) : (
+      <p className={styles["not-found-message"]}>No posts found.</p>
+    )}
+  </div>
 );
