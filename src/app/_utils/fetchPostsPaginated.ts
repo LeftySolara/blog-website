@@ -38,6 +38,7 @@ export const fetchPostsPaginated = async (
         page,
         pageSize,
       },
+      sort: ["date:desc"],
       fields: ["title", "date", "slug", "uid"],
     };
 

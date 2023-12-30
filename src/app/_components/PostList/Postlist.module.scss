@@ -1,3 +1,4 @@
+@use "../../_styles/theme" as theme;
 @import "../../_styles/_include-media.scss";
 
 .post-list {
@@ -10,4 +11,12 @@
   @include media(">phone", "<=desktop") {
     gap: 32px;
   }
+}
+
+.not-found-message {
+  margin: 0;
+  padding: 0;
+  font-family: theme.$body-font-stack;
+  font-weight: theme.$font-weight-regular;
+  font-size: 18px;
 }
