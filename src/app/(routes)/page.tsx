@@ -10,7 +10,7 @@ const HomePage = async () => {
   let posts: Array<PostInfo> = [];
 
   try {
-    const data = await fetchPostsPaginated(1, 5);
+    const data: FetchPostsPaginatedResponse = await fetchPostsPaginated(1, 5);
     const { posts: rawPosts } = data;
 
     posts = rawPosts.map(
