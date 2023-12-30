@@ -1,29 +1,22 @@
-import { PostInfoArray, PostList } from "@/app/_components/PostList/PostList";
+import { PostInfo } from "@/app/_components/PostList/PostListItem";
+import { PostList } from "@/app/_components/PostList/PostList";
+import {
+  FetchPostsPaginatedResponse,
+  fetchPostsPaginated,
+} from "@/app/_utils/fetchPostsPaginated";
 import styles from "./page.module.scss";
 
-const Home = () => {
-  const posts: PostInfoArray = [
-    {
-      dateString: "2021-09-01T15:21:39.862Z",
-      title: "An Example Post",
-      href: "#",
-    },
-    {
-      dateString: "2021-09-01T15:21:39.862Z",
-      title: "An Example Post",
-      href: "#",
-    },
-    {
-      dateString: "2021-09-01T15:21:39.862Z",
-      title: "An Example Post",
-      href: "#",
-    },
-    {
-      dateString: "2021-09-01T15:21:39.862Z",
-      title: "An Example Post",
-      href: "#",
-    },
-  ];
+const HomePage = async () => {
+  const data: FetchPostsPaginatedResponse = await fetchPostsPaginated(1, 5);
+  const { posts: rawPosts } = data;
+
+  const posts = rawPosts.map(
+    (post): PostInfo => ({
+      title: post.title,
+      dateString: post.datePublished.toString(),
+      href: `/posts/${post.slug}`,
+    }),
+  );
 
   return (
     <>
@@ -54,4 +47,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
