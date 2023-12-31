@@ -17,11 +17,13 @@ const CategorySection = async (props: CategorySectionProps) => {
 
   return (
     <section id={sectionId}>
-      <h3>{categoryName}</h3>
+      <h3 className={styles["category-heading"]}>{categoryName}</h3>
       <ul className={styles["post-link-list"]}>
         {posts.map((post: Post) => (
           <li key={post.uid}>
-            <Link href={`/posts/${post.slug}`}>{post.title}</Link>
+            <Link href={`/posts/${post.slug}`} className={styles["post-title"]}>
+              {post.title}
+            </Link>
           </li>
         ))}
       </ul>
@@ -33,19 +35,24 @@ const CategoriesPage = async () => {
   const categories = await fetchCategories();
 
   return (
-    <div>
+    <div id={styles["categories-page"]}>
       <header>
-        <h2>Categories</h2>
-        <p>This is a list of my blog posts, grouped by topic.</p>
+        <h2 id={styles["main-heading"]}>Categories</h2>
+        <p className={styles["body-text"]}>
+          This is a list of my blog posts, grouped by topic.
+        </p>
       </header>
       <div id={styles["category-index-container"]}>
         <header>
-          <h3>Index</h3>
+          <h3 className={styles["index-heading"]}>Index</h3>
         </header>
         <ul id={styles["category-index-list"]}>
           {categories.map((category) => (
-            <li key={category}>
-              <Link href={`#${category.replace(/\s/g, "-").toLowerCase()}`}>
+            <li className={styles["category-index-item"]} key={category}>
+              <Link
+                href={`#${category.replace(/\s/g, "-").toLowerCase()}`}
+                className={styles["category-index-item"]}
+              >
                 {category}
               </Link>
             </li>
