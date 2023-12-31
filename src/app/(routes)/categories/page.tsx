@@ -10,29 +10,46 @@ interface CategorySectionProps {
 
 const CategorySection = async (props: CategorySectionProps) => {
   const { categoryName } = props;
-  const posts: Array<Post> = await fetchPostsByCategory(categoryName);
+  let posts: Array<Post>;
+
+  try {
+    posts = await fetchPostsByCategory(categoryName);
+  } catch (err: unknown) {
+    posts = [];
+  }
 
   // Remove spaces from category name so we can use it as an anchor link.
   const sectionId = categoryName.replace(/\s/g, "-").toLowerCase();
 
   return (
-    <section id={sectionId}>
-      <h3 className={styles["category-heading"]}>{categoryName}</h3>
-      <ul className={styles["post-link-list"]}>
-        {posts.map((post: Post) => (
-          <li key={post.uid}>
-            <Link href={`/posts/${post.slug}`} className={styles["post-title"]}>
-              {post.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
+    posts.length > 0 && (
+      <section id={sectionId}>
+        <h3 className={styles["category-heading"]}>{categoryName}</h3>
+        <ul className={styles["post-link-list"]}>
+          {posts.map((post: Post) => (
+            <li key={post.uid}>
+              <Link
+                href={`/posts/${post.slug}`}
+                className={styles["post-title"]}
+              >
+                {post.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
   );
 };
 
 const CategoriesPage = async () => {
-  const categories = await fetchCategories();
+  let categories: Array<string>;
+
+  try {
+    categories = await fetchCategories();
+  } catch (err: unknown) {
+    categories = [];
+  }
 
   return (
     <div id={styles["categories-page"]}>

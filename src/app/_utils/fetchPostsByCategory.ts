@@ -39,7 +39,6 @@ export const fetchPostsByCategory = async (
 
     return posts;
   } catch (err: unknown) {
-    console.log(err);
     throw new Error("Error fetching posts by category.");
   }
 };
