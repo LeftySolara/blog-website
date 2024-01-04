@@ -1,5 +1,9 @@
 @use "../../../_styles/theme" as theme;
 
+#post-title {
+  font-family: theme.$heading-font-stack;
+}
+
 .markdown-content {
   color: map-get(theme.$colors, "surface0");
   font-family: theme.$body-font-stack;

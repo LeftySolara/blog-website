@@ -17,7 +17,7 @@ const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
     <div>
       {postData ? (
         <>
-          <h1>{postData.title}</h1>
+          <h1 id={styles["post-title"]}>{postData.title}</h1>
           <div
             className={styles["markdown-content"]}
             dangerouslySetInnerHTML={{ __html: htmlContent }}
