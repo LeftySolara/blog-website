@@ -1,0 +1,33 @@
+@use "../../_styles/theme" as theme;
+
+#series-page {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 24px;
+  color: map-get(theme.$colors, "surface0");
+}
+
+#main-heading {
+  font-family: theme.$heading-font-stack;
+}
+
+.series-heading {
+  font-family: theme.$heading-font-stack;
+}
+
+.body-text {
+  font-family: theme.$body-font-stack;
+  font-size: 18px;
+}
+
+.post-link-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-title {
+  font-family: theme.$body-font-stack;
+  color: map-get(theme.$colors, "sapphire");
+  text-decoration: none;
+}

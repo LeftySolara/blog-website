@@ -52,6 +52,9 @@ const SeriesPage = async () => {
     <div id={styles["series-page"]}>
       <header>
         <h2 id={styles["main-heading"]}>Series</h2>
+        <p className={styles["body-text"]}>
+          This is a list of my blog posts, grouped by series.
+        </p>
       </header>
       <div id={styles["series-list-container"]}>
         {series.map((seriesName: string) => (
