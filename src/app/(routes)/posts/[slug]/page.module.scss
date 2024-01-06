@@ -1,7 +1,17 @@
 @use "../../../_styles/theme" as theme;
 
-#post-title {
+#post-header {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+#post-title,
+#post-date {
   font-family: theme.$heading-font-stack;
+  margin: 0;
+  padding: 0;
 }
 
 .markdown-content {
