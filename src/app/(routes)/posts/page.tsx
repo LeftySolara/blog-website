@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { PostInfo } from "@/app/_components/PostList/PostListItem";
 import { PostList } from "@/app/_components/PostList/PostList";
 import {
@@ -5,7 +6,13 @@ import {
   FetchPostsPaginatedResponse,
 } from "@/app/_utils/fetchPostsPaginated";
 import { Pagination } from "@/app/_components/Pagination/Pagination";
+import { blogTitle } from "@/app/_utils/metadata";
 import styles from "./page.module.scss";
+
+export const metadata: Metadata = {
+  title: `All Posts | ${blogTitle}`,
+  description: "A list of all blog posts",
+};
 
 const PostsPage = async ({
   searchParams,

@@ -1,10 +1,11 @@
 import { Inconsolata, Gilda_Display } from "next/font/google";
 import type { Metadata } from "next";
+import { blogTitle, defaultDescription } from "./_utils/metadata";
 import styles from "./layout.module.scss";
 
 export const metadata: Metadata = {
-  title: "The Other Side of the IDE",
-  description: "Julianne Adams' blog.",
+  title: blogTitle,
+  description: defaultDescription,
 };
 
 const inconsolata = Inconsolata({

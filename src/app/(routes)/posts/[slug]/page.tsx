@@ -1,10 +1,36 @@
+import { Metadata } from "next";
 import moment from "moment";
 import { remark } from "remark";
 import html from "remark-html";
 import { fetchPost } from "@/app/_utils/fetchPost";
+import { blogTitle } from "@/app/_utils/metadata";
 import styles from "./page.module.scss";
 
-const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
+type Props = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = params;
+  let metadata: Metadata;
+
+  try {
+    const post = await fetchPost(slug);
+    const title = post ? `${post.title} | ${blogTitle}` : "Post not found";
+
+    metadata = {
+      title,
+    };
+  } catch (err: unknown) {
+    metadata = {
+      title: "Post not found",
+    };
+  }
+
+  return metadata;
+}
+
+const BlogPostPage = async ({ params }: Props) => {
   let htmlContent: string | TrustedHTML = "";
   let postDate: string = "";
 
