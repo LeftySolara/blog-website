@@ -12,18 +12,27 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = params;
-  let metadata: Metadata;
+  const postNotFoundMessage: string = "Post not found";
+  const descriptionNotFoundMessage: string = "No description";
 
+  let metadata: Metadata;
   try {
     const post = await fetchPost(slug);
-    const title = post ? `${post.title} | ${blogTitle}` : "Post not found";
+
+    const title =
+      post && post.title ? `${post.title} | ${blogTitle}` : postNotFoundMessage;
+
+    const description =
+      post && post.description ? post.description : descriptionNotFoundMessage;
 
     metadata = {
       title,
+      description,
     };
   } catch (err: unknown) {
     metadata = {
-      title: "Post not found",
+      title: postNotFoundMessage,
+      description: descriptionNotFoundMessage,
     };
   }
 

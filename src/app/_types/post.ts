@@ -3,7 +3,7 @@
  *
  * @property title The post's title.
  * @property content The post's original markdown content.
- * @property summary A brief description of the post.
+ * @property description A brief description of the post.
  * @property datePublished The date the post was published.
  * @property slug The URL slug of the post.
  * @property uid The post's unique identifier.
@@ -14,7 +14,7 @@
 export interface Post {
   title: string;
   content?: string;
-  summary?: string;
+  description?: string;
   datePublished: Date;
   slug: string;
   uid: string;
