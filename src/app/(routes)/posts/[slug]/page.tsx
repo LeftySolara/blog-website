@@ -3,7 +3,11 @@ import moment from "moment";
 import { remark } from "remark";
 import html from "remark-html";
 import { fetchPost } from "@/app/_utils/fetchPost";
-import { blogTitle } from "@/app/_utils/metadata";
+import {
+  blogSecureUrl,
+  blogTitle,
+  defaultOpenGraphImage,
+} from "@/app/_utils/metadata";
 import styles from "./page.module.scss";
 
 type Props = {
@@ -16,11 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const descriptionNotFoundMessage: string = "No description";
 
   let metadata: Metadata;
+
   try {
     const post = await fetchPost(slug);
 
-    const title =
-      post && post.title ? `${post.title} | ${blogTitle}` : postNotFoundMessage;
+    const title = post && post.title ? post.title : postNotFoundMessage;
 
     const description =
       post && post.description ? post.description : descriptionNotFoundMessage;
@@ -28,6 +32,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     metadata = {
       title,
       description,
+      openGraph: {
+        title,
+        description,
+        type: "article",
+        images: defaultOpenGraphImage,
+        url: `${blogSecureUrl}/posts/${slug}`,
+        siteName: blogTitle,
+      },
     };
   } catch (err: unknown) {
     metadata = {

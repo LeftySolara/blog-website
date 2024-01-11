@@ -18,14 +18,14 @@ interface OpenGraphImage {
 }
 
 // Re-usable variables.
-const blogTitle: string = "The Other Side of the IDE";
-const blogDescription: string =
+export const blogTitle: string = "The Other Side of the IDE";
+export const blogDescription: string =
   "The blog of Julianne Adams, where she discusses life, software, and writing.";
-const blogSecureUrl: string = "https://blog.julianneadams.dev";
+export const blogSecureUrl: string = "https://blog.julianneadams.dev";
 
 // An Open Graph image. Since we're using the same one
 // on every page, we'll just define it here and re-use it.
-const defaultOpenGraphImage: OpenGraphImage = {
+export const defaultOpenGraphImage: OpenGraphImage = {
   url: "http://blog.julianneadams.dev/opengraph-image.png",
   secureUrl: "https://blog.julianneadams.dev/opengraph-image.png",
   type: "image/png",
@@ -79,6 +79,24 @@ export const metadataCategoriesPage: Metadata = {
     type: "website",
     images: defaultOpenGraphImage,
     url: `${blogSecureUrl}/categories`,
+    siteName: blogTitle,
+  },
+};
+
+// Series page metadata.
+const seriesPageTitle: string = `Series | ${blogTitle}`;
+const seriesPageDescription: string =
+  "A list of blog posts that belog to a larger series.";
+
+export const metadataSeriesPage: Metadata = {
+  title: seriesPageTitle,
+  description: seriesPageDescription,
+  openGraph: {
+    title: seriesPageTitle,
+    description: seriesPageDescription,
+    type: "website",
+    images: defaultOpenGraphImage,
+    url: `${blogSecureUrl}/series`,
     siteName: blogTitle,
   },
 };
