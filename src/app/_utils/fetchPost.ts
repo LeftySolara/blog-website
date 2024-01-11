@@ -9,8 +9,9 @@
  */
 export interface BlogPostData {
   slug: string;
-  content: string;
   title: string;
+  description: string;
+  content: string;
   date: Date;
 }
 
@@ -36,12 +37,13 @@ export const fetchPost = async (slug: string): Promise<BlogPostData | null> => {
       throw new Error("Post not found.");
     }
 
-    const { content, title, date } = posts[0].attributes;
+    const { content, title, description, date } = posts[0].attributes;
 
     return {
       slug,
       content,
       title,
+      description,
       date: new Date(date),
     };
   } catch (err: unknown) {

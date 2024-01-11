@@ -1,8 +1,12 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import { Post } from "@/app/_types/post";
 import { fetchPostsBySeries } from "@/app/_utils/fetchPostsBySeries";
 import { fetchSeries } from "@/app/_utils/fetchSeries";
+import { metadataSeriesPage } from "@/app/_utils/metadata";
 import styles from "./page.module.scss";
+
+export const metadata: Metadata = metadataSeriesPage;
 
 interface SeriesSectionProps {
   seriesName: string;
