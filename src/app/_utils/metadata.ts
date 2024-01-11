@@ -48,6 +48,23 @@ export const metadataHomePage: Metadata = {
   },
 };
 
+// Posts page metadata.
+const postsPageTitle: string = `All Posts | ${blogTitle}`;
+const postsPageDescription: string = "All of my blog posts.";
+
+export const metadataPostsPage: Metadata = {
+  title: postsPageTitle,
+  description: postsPageDescription,
+  openGraph: {
+    title: postsPageTitle,
+    description: postsPageDescription,
+    type: "website",
+    images: defaultOpenGraphImage,
+    url: `${blogSecureUrl}/posts`,
+    siteName: blogTitle,
+  },
+};
+
 // Categories page metadata.
 const categoriesPageTitle: string = `Categories | ${blogTitle}`;
 const categoriesPageDescription: string =
