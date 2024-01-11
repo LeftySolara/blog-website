@@ -1,10 +1,14 @@
+import { Metadata } from "next";
 import { PostInfo } from "@/app/_components/PostList/PostListItem";
 import { PostList } from "@/app/_components/PostList/PostList";
 import {
   FetchPostsPaginatedResponse,
   fetchPostsPaginated,
 } from "@/app/_utils/fetchPostsPaginated";
+import { metadataHomePage } from "@/app/_utils/metadata";
 import styles from "./page.module.scss";
+
+export const metadata: Metadata = metadataHomePage;
 
 const HomePage = async () => {
   let posts: Array<PostInfo> = [];

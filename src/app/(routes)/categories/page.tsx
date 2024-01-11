@@ -3,13 +3,10 @@ import Link from "next/link";
 import { fetchCategories } from "@/app/_utils/fetchCategories";
 import { fetchPostsByCategory } from "@/app/_utils/fetchPostsByCategory";
 import { Post } from "@/app/_types/post";
-import { blogTitle } from "@/app/_utils/metadata";
+import { metadataCategoriesPage } from "@/app/_utils/metadata";
 import styles from "./page.module.scss";
 
-export const metadata: Metadata = {
-  title: `Categories | ${blogTitle}`,
-  description: "Blog posts grouped by category",
-};
+export const metadata: Metadata = metadataCategoriesPage;
 
 interface CategorySectionProps {
   categoryName: string;
